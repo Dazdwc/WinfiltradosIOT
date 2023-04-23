@@ -1,0 +1,298 @@
+[
+    {
+        "id": "1ae744cea7329609",
+        "type": "tab",
+        "label": "Tagreader-Equipo",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9b454767658a5c28",
+        "type": "function",
+        "z": "1ae744cea7329609",
+        "name": "Acceso de nivel 1",
+        "func": "\n\nif (msg.topic.startsWith(\"puerta1\")) {\n    if (msg.payload == \"F24944D82E1F3B7F\" || msg.payload == \"C89BC93E86CFE080\" || msg.payload == \"BACCF33591C2DEB7\") {\n        msg.payload = \"Acceso Concedido\";\n    } else { msg.payload = \"Acceso Denegado\"; };\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 180,
+        "wires": [
+            [
+                "99bc3de803e151da"
+            ]
+        ]
+    },
+    {
+        "id": "2449cfdcec404ad1",
+        "type": "mqtt out",
+        "z": "1ae744cea7329609",
+        "name": "Abrir puerta",
+        "topic": "seguro",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b230f4fe24038707",
+        "x": 1090,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "924768dafa5b3d18",
+        "type": "function",
+        "z": "1ae744cea7329609",
+        "name": "Acceso de nivel 2",
+        "func": "if (msg.topic.startsWith(\"puerta2\")) {\n    if (msg.payload == \"C89BC93E86CFE080\" || msg.payload == \"BACCF33591C2DEB7\") {\n        msg.payload = \"Acceso Concedido\";\n    } else { msg.payload = \"Acceso Denegado\"; }\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 240,
+        "wires": [
+            [
+                "99bc3de803e151da"
+            ]
+        ]
+    },
+    {
+        "id": "902b264b9f4b5b91",
+        "type": "function",
+        "z": "1ae744cea7329609",
+        "name": "Acceso de nivel 3",
+        "func": "if (msg.topic.startsWith(\"puerta3\")) {\n    if (msg.payload == \"BACCF33591C2DEB7\") {\n        msg.payload = \"Acceso Concedido\";\n    } else { msg.payload = \"Acceso Denegado\"; }  \n        \n        return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 300,
+        "wires": [
+            [
+                "99bc3de803e151da"
+            ]
+        ]
+    },
+    {
+        "id": "84df71a27ffbd9ae",
+        "type": "mqtt in",
+        "z": "1ae744cea7329609",
+        "name": "Tagreader 1",
+        "topic": "puerta1",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "b230f4fe24038707",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "9b454767658a5c28"
+            ]
+        ]
+    },
+    {
+        "id": "6d766674a0de8efb",
+        "type": "function",
+        "z": "1ae744cea7329609",
+        "name": "function 1",
+        "func": "if (msg.payload == \"Acceso Concedido\") {\n    msg.payload = \"Puerta Abierta\";\n    return msg;\n} ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 180,
+        "wires": [
+            [
+                "2449cfdcec404ad1",
+                "457733f4a51dd398",
+                "d96e288ee7cb43b5"
+            ]
+        ]
+    },
+    {
+        "id": "9a983d7c6813d3ba",
+        "type": "mqtt in",
+        "z": "1ae744cea7329609",
+        "name": "Tagreader 2",
+        "topic": "puerta2",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "b230f4fe24038707",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 240,
+        "wires": [
+            [
+                "924768dafa5b3d18"
+            ]
+        ]
+    },
+    {
+        "id": "bd6267b64f1342c9",
+        "type": "mqtt in",
+        "z": "1ae744cea7329609",
+        "name": "Tagreader 3",
+        "topic": "puerta3",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "b230f4fe24038707",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 300,
+        "wires": [
+            [
+                "902b264b9f4b5b91"
+            ]
+        ]
+    },
+    {
+        "id": "99bc3de803e151da",
+        "type": "switch",
+        "z": "1ae744cea7329609",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Acceso Concedido",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Acceso Denegado",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 650,
+        "y": 240,
+        "wires": [
+            [
+                "6d766674a0de8efb"
+            ],
+            [
+                "457733f4a51dd398",
+                "278bcfe9aaebbf5b",
+                "d96e288ee7cb43b5"
+            ]
+        ]
+    },
+    {
+        "id": "457733f4a51dd398",
+        "type": "ui_text",
+        "z": "1ae744cea7329609",
+        "group": "0ee471f88cd83c05",
+        "order": 0,
+        "width": "0",
+        "height": "0",
+        "name": "",
+        "label": "Acesso Puerta",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1100,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "278bcfe9aaebbf5b",
+        "type": "mqtt out",
+        "z": "1ae744cea7329609",
+        "name": "Denegar acceso",
+        "topic": "denegado",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b230f4fe24038707",
+        "x": 1100,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d96e288ee7cb43b5",
+        "type": "ui_audio",
+        "z": "1ae744cea7329609",
+        "name": "",
+        "group": "0ee471f88cd83c05",
+        "voice": "Google español",
+        "always": "",
+        "x": 1080,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "b230f4fe24038707",
+        "type": "mqtt-broker",
+        "name": "mosqq",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "0ee471f88cd83c05",
+        "type": "ui_group",
+        "name": "Puertas",
+        "tab": "76a6f13d1e71fbba",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "76a6f13d1e71fbba",
+        "type": "ui_tab",
+        "name": "ACCESO PUERTAS",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
