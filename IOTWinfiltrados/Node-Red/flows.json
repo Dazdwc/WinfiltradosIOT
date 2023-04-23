@@ -12,7 +12,7 @@
         "type": "function",
         "z": "1ae744cea7329609",
         "name": "Acceso de nivel 1",
-        "func": "\n\nif (msg.topic.startsWith(\"puerta1\")) {\n    if (msg.payload == \"F24944D82E1F3B7F\" || msg.payload == \"C89BC93E86CFE080\" || msg.payload == \"BACCF33591C2DEB7\") {\n        msg.payload = \"Acceso Concedido\";\n    } else { msg.payload = \"Acceso Denegado\"; };\n    return msg;\n}\n",
+        "func": "\n\nif (msg.topic.startsWith(\"Puerta1\")) {\n    if (msg.payload == \"F24944D82E1F3B7F\" || msg.payload == \"C89BC93E86CFE080\" || msg.payload == \"BACCF33591C2DEB7\") {\n        msg.payload = \"Acceso Concedido\";\n    } else { msg.payload = \"Acceso Denegado\"; };\n    return msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -22,7 +22,8 @@
         "y": 180,
         "wires": [
             [
-                "99bc3de803e151da"
+                "99bc3de803e151da",
+                "097da9bcdadc8227"
             ]
         ]
     },
@@ -31,7 +32,7 @@
         "type": "mqtt out",
         "z": "1ae744cea7329609",
         "name": "Abrir puerta",
-        "topic": "seguro",
+        "topic": "concedido",
         "qos": "",
         "retain": "",
         "respTopic": "",
@@ -41,7 +42,7 @@
         "expiry": "",
         "broker": "b230f4fe24038707",
         "x": 1090,
-        "y": 180,
+        "y": 120,
         "wires": []
     },
     {
@@ -49,7 +50,7 @@
         "type": "function",
         "z": "1ae744cea7329609",
         "name": "Acceso de nivel 2",
-        "func": "if (msg.topic.startsWith(\"puerta2\")) {\n    if (msg.payload == \"C89BC93E86CFE080\" || msg.payload == \"BACCF33591C2DEB7\") {\n        msg.payload = \"Acceso Concedido\";\n    } else { msg.payload = \"Acceso Denegado\"; }\n    return msg;\n}",
+        "func": "if (msg.topic.startsWith(\"Puerta2\")) {\n    if (msg.payload == \"C89BC93E86CFE080\" || msg.payload == \"BACCF33591C2DEB7\") {\n        msg.payload = \"Acceso Concedido\";\n    } else { msg.payload = \"Acceso Denegado\"; }\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -59,7 +60,8 @@
         "y": 240,
         "wires": [
             [
-                "99bc3de803e151da"
+                "99bc3de803e151da",
+                "097da9bcdadc8227"
             ]
         ]
     },
@@ -68,7 +70,7 @@
         "type": "function",
         "z": "1ae744cea7329609",
         "name": "Acceso de nivel 3",
-        "func": "if (msg.topic.startsWith(\"puerta3\")) {\n    if (msg.payload == \"BACCF33591C2DEB7\") {\n        msg.payload = \"Acceso Concedido\";\n    } else { msg.payload = \"Acceso Denegado\"; }  \n        \n        return msg;\n}\n",
+        "func": "if (msg.topic.startsWith(\"Puerta3\")) {\n    if (msg.payload == \"BACCF33591C2DEB7\") {\n        msg.payload = \"Acceso Concedido\";\n    } else { msg.payload = \"Acceso Denegado\"; }  \n        \n        return msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -78,7 +80,8 @@
         "y": 300,
         "wires": [
             [
-                "99bc3de803e151da"
+                "99bc3de803e151da",
+                "097da9bcdadc8227"
             ]
         ]
     },
@@ -87,7 +90,7 @@
         "type": "mqtt in",
         "z": "1ae744cea7329609",
         "name": "Tagreader 1",
-        "topic": "puerta1",
+        "topic": "Puerta1",
         "qos": "2",
         "datatype": "auto-detect",
         "broker": "b230f4fe24038707",
@@ -99,7 +102,8 @@
         "y": 180,
         "wires": [
             [
-                "9b454767658a5c28"
+                "9b454767658a5c28",
+                "eb58699d1707a37b"
             ]
         ]
     },
@@ -120,7 +124,8 @@
             [
                 "2449cfdcec404ad1",
                 "457733f4a51dd398",
-                "d96e288ee7cb43b5"
+                "d96e288ee7cb43b5",
+                "5ec41a7ccb09201c"
             ]
         ]
     },
@@ -129,7 +134,7 @@
         "type": "mqtt in",
         "z": "1ae744cea7329609",
         "name": "Tagreader 2",
-        "topic": "puerta2",
+        "topic": "Puerta2",
         "qos": "2",
         "datatype": "auto-detect",
         "broker": "b230f4fe24038707",
@@ -141,7 +146,8 @@
         "y": 240,
         "wires": [
             [
-                "924768dafa5b3d18"
+                "924768dafa5b3d18",
+                "eb58699d1707a37b"
             ]
         ]
     },
@@ -150,7 +156,7 @@
         "type": "mqtt in",
         "z": "1ae744cea7329609",
         "name": "Tagreader 3",
-        "topic": "puerta3",
+        "topic": "Puerta3",
         "qos": "2",
         "datatype": "auto-detect",
         "broker": "b230f4fe24038707",
@@ -162,7 +168,8 @@
         "y": 300,
         "wires": [
             [
-                "902b264b9f4b5b91"
+                "902b264b9f4b5b91",
+                "eb58699d1707a37b"
             ]
         ]
     },
@@ -195,9 +202,7 @@
                 "6d766674a0de8efb"
             ],
             [
-                "457733f4a51dd398",
-                "278bcfe9aaebbf5b",
-                "d96e288ee7cb43b5"
+                "3a854a9d7185e930"
             ]
         ]
     },
@@ -211,18 +216,18 @@
         "height": "0",
         "name": "",
         "label": "Acesso Puerta",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
+        "format": "{{msg.topic}}: {{msg.payload}} ",
+        "layout": "col-center",
         "className": "",
-        "x": 1100,
-        "y": 240,
+        "x": 1320,
+        "y": 160,
         "wires": []
     },
     {
         "id": "278bcfe9aaebbf5b",
         "type": "mqtt out",
         "z": "1ae744cea7329609",
-        "name": "Denegar acceso",
+        "name": "Bloquear Puerta",
         "topic": "denegado",
         "qos": "",
         "retain": "",
@@ -232,8 +237,8 @@
         "correl": "",
         "expiry": "",
         "broker": "b230f4fe24038707",
-        "x": 1100,
-        "y": 360,
+        "x": 1080,
+        "y": 300,
         "wires": []
     },
     {
@@ -244,8 +249,133 @@
         "group": "0ee471f88cd83c05",
         "voice": "Google español",
         "always": "",
-        "x": 1080,
-        "y": 300,
+        "x": 1300,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "eb58699d1707a37b",
+        "type": "debug",
+        "z": "1ae744cea7329609",
+        "name": "Entrada de datos",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "097da9bcdadc8227",
+        "type": "debug",
+        "z": "1ae744cea7329609",
+        "name": "Filtro por nivel",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "b6e2d1f0e16f4647",
+        "type": "comment",
+        "z": "1ae744cea7329609",
+        "name": "Funcionamiento Tagreaders",
+        "info": "# Funcionamiento Tagreader\n\nCada Tagreader simula una puerta diferente,\npor tanto un nivel de acceso propio.\nToda puerta podrá ser abierta por el nivel\nde acceso de la misma y sus niveles superiores.\n\n**Tagreader 1 =** Nivel de acceso 1\n\n**Tagreader 2 =** Nivel de acceso 2\n\n**Tagreader 3 =** Nivel de acceso 3\n",
+        "x": 160,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "87fceb2581c78a6b",
+        "type": "comment",
+        "z": "1ae744cea7329609",
+        "name": "Funcionamiento Accesos",
+        "info": "# Funcionamiento Accesos\n\nEn estas funciones se filtra por nivel de acceso y\nse determina si se concede o no el acceso,\ncada nivel tiene su propio Script\nsiendo el nivel 3 el más restrictivo.\n\n**Nivel de acceso 1 =** Pueden entrar por la puerta\nde nivel de acceso 1, los usuarios de nivel 1,2 y 3.\n\n**Nivel de acceso 2 =** Pueden entrar por la puerta\nde nivel de acceso 2, los usuarios de nivel 2 y 3.\n\n**Nivel de acceso 3 =** A diferencia de las ateriores,\nen este caso unicamente tendrán acceso los de nivel 3.\n",
+        "x": 430,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "b3eb8d972b5de53f",
+        "type": "comment",
+        "z": "1ae744cea7329609",
+        "name": "Funcionamiento Switch y funciones",
+        "info": "# Funcionamiento Switch\n\nCreamos un switch, dependiendo de la respuesta obtenida\nen el filtro anterior pueden pasar dos cosas:\n\n**Acceso Concedido =** Abre una rama donde se deriba a una función, \nque cambiará el Acceso Concedido por: \"puerta abierta\" y da la \nrespuesta al usuario en la dashboard y envia un mensaje mqtt que\nsimula la abertura de la puerta.\n\n**Acceso Denegado =** Abre una rama donde se deriba a una función, \nque cambiará el Acceso Denegado por: \"puerta bloqueada\" y da la \nrespuesta al usuario en la dashboard y envia un mensaje mqtt que\nsimulara el bloqueo de la puerta.\n\n",
+        "x": 740,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "5ec41a7ccb09201c",
+        "type": "ui_toast",
+        "z": "1ae744cea7329609",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": true,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1330,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "3a854a9d7185e930",
+        "type": "function",
+        "z": "1ae744cea7329609",
+        "name": "function 2",
+        "func": "if (msg.payload == \"Acceso Denegado\") {\n    msg.payload = \"Puerta Bloqueada\";\n    return msg;\n} ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 280,
+        "wires": [
+            [
+                "278bcfe9aaebbf5b",
+                "d96e288ee7cb43b5",
+                "5ec41a7ccb09201c",
+                "457733f4a51dd398"
+            ]
+        ]
+    },
+    {
+        "id": "c0cd3a5276076c6a",
+        "type": "comment",
+        "z": "1ae744cea7329609",
+        "name": "Envio de respuesta al control",
+        "info": "# Se envia respuesta al control\n\nEnviamos una respuesta mqtt con el topic  \"concedido\"o \"denegado\",\na la espera de ser recibido por el sensor. una vez reciba esta señal\nla interpretará para abrir la puerta o bloquearla respectivamente.\n",
+        "x": 1060,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "2da4dab6bfa2523b",
+        "type": "comment",
+        "z": "1ae744cea7329609",
+        "name": "Interfaz Dashboard",
+        "info": "#Interfaz Dashboard\n\nCreamos una interfaz donde nos indica si la puerta ha sido abierta o no.\n\nLa interfaz nos ofrece:\n\n - un Texto \"acceso puerta\" que nos envia el msg.topic y msg.payload,\n mostrando de esta manera la puerta y si hay acceso o no.\n\n - un audio out que nos leera si la puerta ha sido abierta o bloqueada,\n (pensado para personas de visibilidad reducida.)\n\n - Además de una notificación en forma de ventana.\n\n \n\n",
+        "x": 1310,
+        "y": 120,
         "wires": []
     },
     {
