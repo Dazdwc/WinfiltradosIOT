@@ -1,7 +1,7 @@
-
+ï»¿
 import paho.mqtt.client as mqtt
 
-#Establecemos códigos de seguidad de los Rdif o nfc
+#Establecemos cï¿½digos de seguidad de los Rdif o nfc
 import random
 import time
 
@@ -15,25 +15,25 @@ Nivel3 = "BACCF33591C2DEB7"
 client = mqtt.Client()
 
 client.connect("localhost", 1883, 60)
-
-client.publish("puerta1", Nivel1)
-time.sleep(2) # Espera 2 segundos
-client.publish("puerta2", Nivel1)
-time.sleep(2) # Espera 2 segundos
-client.publish("puerta3", Nivel1)
-time.sleep(2) # Espera 2 segundos
-client.publish("puerta1", Nivel2)
-time.sleep(2) # Espera 2 segundos
-client.publish("puerta2", Nivel2)
-time.sleep(2) # Espera 2 segundos
-client.publish("puerta3", Nivel2)
-time.sleep(2) # Espera 2 segundos
-client.publish("puerta1", Nivel3)
-time.sleep(2) # Espera 2 segundos
-client.publish("puerta2", Nivel3)
-time.sleep(2) # Espera 2 segundos
-client.publish("puerta3", Nivel3)
-time.sleep(2) # Espera 2 segundos
-client.publish("puerta1", uid)
+# Puertas
+client.publish("Puerta1", Nivel1)
+time.sleep(random.uniform(2, 5)) # Espera un tiempo aleatorio entre 2 y 5 segundos
+client.publish("Puerta2", Nivel1)
+time.sleep(random.uniform(2, 5)) # Espera un tiempo aleatorio entre 2 y 5 segundos
+client.publish("Puerta3", Nivel1)
+time.sleep(random.uniform(2, 5)) # Espera un tiempo aleatorio entre 2 y 5 segundos
+client.publish("Puerta1", Nivel2)
+time.sleep(random.uniform(2, 5)) # Espera un tiempo aleatorio entre 2 y 5 segundos
+client.publish("Puerta2", Nivel2)
+time.sleep(random.uniform(2, 5)) # Espera un tiempo aleatorio entre 2 y 5 segundos
+client.publish("Puerta3", Nivel2)
+time.sleep(random.uniform(2, 5)) # Espera un tiempo aleatorio entre 2 y 5 segundos
+client.publish("Puerta1", Nivel3)
+time.sleep(random.uniform(2, 5)) # Espera un tiempo aleatorio entre 2 y 5 segundos
+client.publish("Puerta2", Nivel3)
+time.sleep(random.uniform(2, 5)) # Espera un tiempo aleatorio entre 2 y 5 segundos
+client.publish("Puerta3", Nivel3)
+time.sleep(random.uniform(2, 5)) # Espera un tiempo aleatorio entre 2 y 5 segundos
+client.publish("Puerta1", uid)
 
 client.disconnect()
