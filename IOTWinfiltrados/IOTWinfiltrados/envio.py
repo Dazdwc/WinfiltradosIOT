@@ -1,5 +1,7 @@
+
 # Importamos paho client de mqtt para poder realizar el programa
 import paho.mqtt.client as mqtt
+
 import random
 import time
 # Establecemos codigos de seguidad de los Rdif o nfc
@@ -18,7 +20,6 @@ Nivel3 = "BACCF33591C2DEB7"
 client = mqtt.Client()
 # Asignamos los datos del cliente, en este caso tambien podriamos cambiar localhost seguido del puerto y el tiempo que tardara en desconectarse automaticamente el cliente.
 client.connect("localhost", 1883, 60)
-
 # Publicamos en el topic "puerta1" (simulacion de entrada de RFID) de los 3 niveles, Se espera acceso concedido en todos.
 # El time.sleep lo que hara sera aleatorizar un valor entre 2 y 5 y esperar ese tiempo en segundos para simular unas entradas mas realistas.
 client.publish("Puerta1", Nivel1)
